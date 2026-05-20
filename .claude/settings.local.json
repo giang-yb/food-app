@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p docs/plans/home)",
+      "Skill(spec-reviewer)",
+      "Skill(spec-reviewer:*)",
+      "Bash(npx tsc *)",
+      "WebFetch(domain:minimax-algeng-chat-tts-us.oss-us-east-1.aliyuncs.com)",
+      "Bash(npm run *)"
+    ],
+    "additionalDirectories": [
+      "d:\\Mine\\food-web\\docs\\plans"
+    ]
+  }
+}

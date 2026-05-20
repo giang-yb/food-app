@@ -1,0 +1,31 @@
+<div class="cart-page">
+  <div class="cart-header">
+    <h1 class="page-title">Giỏ hàng của bạn</h1>
+    @if (!isEmpty) {
+      <span class="item-count">{{ itemCount }} món</span>
+    }
+  </div>
+
+  @if (isEmpty) {
+    <div class="empty-cart">
+      <div class="empty-icon">🛒</div>
+      <h2 class="empty-title">Giỏ hàng trống</h2>
+      <p class="empty-text">Hãy thêm một số món ăn ngon vào giỏ hàng nhé!</p>
+      <a routerLink="/menu" class="browse-btn">
+        Xem thực đơn
+      </a>
+    </div>
+  } @else {
+    <div class="cart-content">
+      <div class="cart-items">
+        @for (item of cartItems; track item.product.id) {
+          <app-cart-item [item]="item" />
+        }
+      </div>
+
+      <div class="cart-sidebar">
+        <app-cart-summary />
+      </div>
+    </div>
+  }
+</div>

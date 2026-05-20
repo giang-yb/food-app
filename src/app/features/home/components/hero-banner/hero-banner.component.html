@@ -1,0 +1,33 @@
+<section class="hero-banner" [class.has-image]="currentBanner.imageUrl">
+  @if (currentBanner) {
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">{{ currentBanner.title }}</h1>
+        <p class="hero-subtitle">{{ currentBanner.subtitle }}</p>
+        <a [routerLink]="currentBanner.ctaLink" class="hero-cta">
+          {{ currentBanner.ctaText }}
+        </a>
+      </div>
+    </div>
+
+    @if (shouldShowIndicators) {
+      <div class="hero-indicators">
+        @for (banner of homeStore.banners(); track trackByBannerId($index)) {
+          <button
+            class="indicator"
+            [class.active]="$index === homeStore.activeBannerIndex()"
+            (click)="goToSlide($index)"
+            [attr.aria-label]="'Go to slide ' + ($index + 1)">
+          </button>
+        }
+      </div>
+    }
+  } @else {
+    <div class="hero-placeholder">
+      <div class="placeholder-content">
+        <h1 class="placeholder-title">Tất cả đồ ăn bạn thèm</h1>
+        <p class="placeholder-subtitle">Giao tận cửa trong 30 phút</p>
+      </div>
+    </div>
+  }
+</section>

@@ -1,0 +1,21 @@
+<section class="featured-products">
+  <div class="section-header">
+    <h2 class="section-title">Sản phẩm nổi bật</h2>
+    <a routerLink="/menu" class="view-all-link">
+      Xem tất cả
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <div class="products-grid">
+    @if (homeStore.featuredProducts().length === 0) {
+      <div class="empty-state">
+        <p>Đang cập nhật sản phẩm...</p>
+      </div>
+    } @else {
+      @for (product of homeStore.featuredProducts(); track trackByProductId($index)) {
+        <app-product-card [product]="product" />
+      }
+    }
+  </div>
+</section>

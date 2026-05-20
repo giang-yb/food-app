@@ -1,0 +1,46 @@
+<div class="reviews">
+  <h2 class="reviews__title">Đánh giá {{ productName }}</h2>
+
+  <!-- Rating Summary -->
+  <div class="reviews__summary">
+    <div class="reviews__score">
+      <span class="reviews__score-value">{{ averageRating }}</span>
+      <span class="reviews__score-star">★</span>
+      <span class="reviews__score-count">{{ reviews.length }} đánh giá</span>
+    </div>
+
+    <div class="reviews__distribution">
+      <div class="reviews__bar-row" *ngFor="let dist of ratingDistribution">
+        <span class="reviews__bar-label">{{ dist.stars }} ★</span>
+        <div class="reviews__bar-track">
+          <div class="reviews__bar-fill" [style.width.%]="dist.percent"></div>
+        </div>
+        <span class="reviews__bar-count">{{ dist.count }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reviews List -->
+  <div class="reviews__list">
+    <div class="reviews__item" *ngFor="let review of reviews">
+      <div class="reviews__item-header">
+        <img
+          [src]="review.userAvatar || 'https://i.pravatar.cc/100?img=0'"
+          [alt]="review.userName"
+          class="reviews__avatar" />
+        <div class="reviews__item-meta">
+          <span class="reviews__username">{{ review.userName }}</span>
+          <span class="reviews__stars">{{ getStars(review.rating) }}</span>
+        </div>
+        <span class="reviews__verified" *ngIf="review.isVerified">✓ Đã mua hàng</span>
+      </div>
+      <p class="reviews__comment">{{ review.comment }}</p>
+      <span class="reviews__date">{{ formatDate(review.createdAt) }}</span>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="reviews__empty" *ngIf="!reviews.length">
+    <p>Chưa có đánh giá nào cho sản phẩm này.</p>
+  </div>
+</div>

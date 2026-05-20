@@ -1,0 +1,30 @@
+<section class="promotional-section">
+  <div class="promo-header">
+    <h2 class="promo-title">🔥 FLASH SALE</h2>
+    <div class="promo-subtitle">
+      <span class="subtitle-text">Kết thúc sau:</span>
+      <app-countdown-timer [seconds]="homeStore.countdownSeconds()" />
+    </div>
+  </div>
+
+  <div class="promo-content">
+    @if (hasFlashSaleProducts) {
+      <div class="flash-sale-products">
+        @for (product of homeStore.flashSale()!.products; track trackByProductId($index)) {
+          <app-product-card [product]="product" />
+        }
+      </div>
+    } @else {
+      <div class="no-products">
+        <p class="no-products-text">Sắp có deals hấp dẫn!</p>
+      </div>
+    }
+  </div>
+
+  <div class="promo-footer">
+    <a routerLink="/flash-sale" class="view-all-link">
+      Xem tất cả deals
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>

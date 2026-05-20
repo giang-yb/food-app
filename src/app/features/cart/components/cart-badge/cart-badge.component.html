@@ -1,0 +1,6 @@
+<a routerLink="/cart" class="cart-link">
+  <span class="cart-icon">🛒</span>
+  @if (showBadge) {
+    <span class="badge">{{ itemCount > 99 ? '99+' : itemCount }}</span>
+  }
+</a>

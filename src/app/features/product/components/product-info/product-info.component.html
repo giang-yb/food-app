@@ -1,0 +1,68 @@
+<div class="product-info">
+  <!-- Category & Rating -->
+  <div class="product-info__meta">
+    <span class="product-info__category">{{ product.categoryName }}</span>
+    <div class="product-info__rating">
+      <span class="product-info__stars">
+        <span *ngFor="let star of ratingStars"
+              class="product-info__star"
+              [class.product-info__star--full]="star < fullStars"
+              [class.product-info__star--half]="star === fullStars && hasHalfStar">
+          {{ star < fullStars ? '★' : (star === fullStars && hasHalfStar ? '★' : '☆') }}
+        </span>
+      </span>
+      <span class="product-info__rating-text">
+        {{ product.rating }} ({{ product.reviewCount }} đánh giá)
+      </span>
+    </div>
+  </div>
+
+  <!-- Product Name -->
+  <h1 class="product-info__name">{{ product.name }}</h1>
+
+  <!-- Price -->
+  <div class="product-info__price">
+    <span class="product-info__price-current">{{ formatPrice(product.price) }}</span>
+    <span class="product-info__price-original" *ngIf="hasDiscount">
+      {{ formatPrice(product.originalPrice!) }}
+    </span>
+    <span class="product-info__price-discount" *ngIf="hasDiscount">
+      -{{ discountPercent }}%
+    </span>
+  </div>
+
+  <!-- Description -->
+  <div class="product-info__description">
+    <p>{{ product.description }}</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="product-info__stats">
+    <div class="product-info__stat">
+      <span class="product-info__stat-icon">🛒</span>
+      <span class="product-info__stat-value">{{ product.purchaseCount | number }}</span>
+      <span class="product-info__stat-label">lượt mua</span>
+    </div>
+    <div class="product-info__stat">
+      <span class="product-info__stat-icon">⭐</span>
+      <span class="product-info__stat-value">{{ product.rating }}</span>
+      <span class="product-info__stat-label">đánh giá</span>
+    </div>
+  </div>
+
+  <!-- Tags -->
+  <div class="product-info__tags" *ngIf="product.tags.length">
+    <span class="product-info__tag" *ngFor="let tag of product.tags">{{ tag }}</span>
+  </div>
+
+  <!-- Add to Cart -->
+  <div class="product-info__actions">
+    <button
+      class="product-info__add-btn"
+      (click)="onAddToCart()"
+      [disabled]="!product.isAvailable">
+      <span *ngIf="product.isAvailable">Thêm vào giỏ hàng</span>
+      <span *ngIf="!product.isAvailable">Hết hàng</span>
+    </button>
+  </div>
+</div>

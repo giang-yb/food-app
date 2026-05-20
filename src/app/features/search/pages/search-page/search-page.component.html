@@ -1,0 +1,35 @@
+<div class="search-page">
+  <div class="search-page__header">
+    <h1 class="search-page__title">Tìm kiếm</h1>
+    <div class="search-page__form">
+      <input
+        type="text"
+        class="search-page__input"
+        placeholder="Nhập tên món ăn..."
+        [(ngModel)]="query"
+        (keyup.enter)="onSearch()" />
+      <button class="search-page__btn" (click)="onSearch()">🔍</button>
+    </div>
+  </div>
+
+  <div class="search-page__results" *ngIf="!isLoading">
+    <p class="search-page__count" *ngIf="hasSearched">
+      {{ products.length }} kết quả cho "{{ query }}"
+    </p>
+
+    <div class="search-page__grid" *ngIf="products.length">
+      <app-product-card
+        *ngFor="let product of products"
+        [product]="product">
+      </app-product-card>
+    </div>
+
+    <div class="search-page__empty" *ngIf="hasSearched && !products.length">
+      <p>Không tìm thấy sản phẩm nào phù hợp với "{{ query }}"</p>
+    </div>
+  </div>
+
+  <div class="search-page__loading" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+  </div>
+</div>

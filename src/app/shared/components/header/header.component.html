@@ -1,0 +1,26 @@
+<header class="header">
+  <div class="header__container">
+    <!-- Logo -->
+    <a routerLink="/" class="header__logo">
+      <span class="header__logo-icon">🍜</span>
+      <span class="header__logo-text">FoodApp</span>
+    </a>
+
+    <!-- Search -->
+    <div class="header__search">
+      <input
+        type="text"
+        class="header__search-input"
+        placeholder="Tìm kiếm món ăn..."
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="onSearch()" />
+      <button class="header__search-btn" (click)="onSearch()">🔍</button>
+    </div>
+
+    <!-- Cart Badge -->
+    <a routerLink="/cart" class="header__cart">
+      <span class="header__cart-icon">🛒</span>
+      <span class="header__cart-badge" *ngIf="showBadge">{{ itemCount }}</span>
+    </a>
+  </div>
+</header>

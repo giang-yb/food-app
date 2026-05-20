@@ -1,0 +1,38 @@
+<div class="product-card">
+  <a [routerLink]="['/product', product.id]" class="product-link">
+    <div class="product-image-container">
+      <img
+        [src]="product.imageUrl"
+        [alt]="product.name"
+        class="product-image"
+        loading="lazy" />
+
+      @if (hasDiscount) {
+        <span class="discount-badge">-{{ discountPercent }}%</span>
+      }
+    </div>
+
+    <div class="product-info">
+      <span class="product-category">{{ product.categoryName }}</span>
+      <h3 class="product-name">{{ product.name }}</h3>
+
+      <div class="product-rating">
+        <span class="rating-stars">★★★★☆</span>
+        <span class="rating-value">{{ product.rating }}</span>
+        <span class="rating-count">({{ product.reviewCount }})</span>
+      </div>
+
+      <div class="product-price">
+        <span class="current-price">{{ formatPrice(product.price) }}</span>
+        @if (hasDiscount) {
+          <span class="original-price">{{ formatPrice(product.originalPrice!) }}</span>
+        }
+      </div>
+    </div>
+  </a>
+
+  <button class="add-to-cart-btn" (click)="onAddToCart($event)">
+    <span class="cart-icon">🛒</span>
+    <span class="cart-text">Thêm vào giỏ</span>
+  </button>
+</div>

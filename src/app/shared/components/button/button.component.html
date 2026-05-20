@@ -1,0 +1,14 @@
+<button
+  [type]="type"
+  class="btn"
+  [class.btn--primary]="variant === 'primary'"
+  [class.btn--secondary]="variant === 'secondary'"
+  [class.btn--outline]="variant === 'outline'"
+  [class.btn--ghost]="variant === 'ghost'"
+  [class.btn--sm]="size === 'sm'"
+  [class.btn--md]="size === 'md'"
+  [class.btn--lg]="size === 'lg'"
+  [class.btn--full]="fullWidth"
+  [disabled]="disabled">
+  <ng-content></ng-content>
+</button>

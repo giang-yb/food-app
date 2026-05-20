@@ -1,0 +1,22 @@
+<div class="home-page">
+  @if (homeStore.isLoading()) {
+    <div class="loading-skeleton">
+      <div class="skeleton-hero"></div>
+      <div class="skeleton-categories">
+        @for (i of [1, 2, 3, 4, 5]; track i) {
+          <div class="skeleton-card"></div>
+        }
+      </div>
+      <div class="skeleton-products">
+        @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
+          <div class="skeleton-product"></div>
+        }
+      </div>
+    </div>
+  } @else {
+    <app-hero-banner />
+    <app-categories-showcase />
+    <app-featured-products />
+    <app-promotional-section />
+  }
+</div>

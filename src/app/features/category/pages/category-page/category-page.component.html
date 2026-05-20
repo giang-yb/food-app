@@ -1,0 +1,21 @@
+<div class="category-page">
+  <div class="category-page__header">
+    <h1 class="category-page__title">{{ categoryName }}</h1>
+    <p class="category-page__count">{{ products.length }} sản phẩm</p>
+  </div>
+
+  <div class="category-page__grid" *ngIf="!isLoading && products.length">
+    <app-product-card
+      *ngFor="let product of products"
+      [product]="product">
+    </app-product-card>
+  </div>
+
+  <div class="category-page__empty" *ngIf="!isLoading && !products.length">
+    <p>Không có sản phẩm nào trong danh mục này.</p>
+  </div>
+
+  <div class="category-page__loading" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+  </div>
+</div>

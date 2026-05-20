@@ -1,0 +1,36 @@
+<div class="related">
+  <h2 class="related__title">Sản phẩm liên quan</h2>
+
+  <div class="related__grid" *ngIf="products.length">
+    <div
+      *ngFor="let product of products"
+      class="related__card">
+      <a [routerLink]="['/product', product.id]" class="related__image">
+        <img [src]="product.imageUrl" [alt]="product.name" />
+        <span class="related__badge" *ngIf="product.originalPrice && product.originalPrice > product.price">
+          -{{ Math.round((1 - product.price / product.originalPrice) * 100) }}%
+        </span>
+      </a>
+      <div class="related__info">
+        <a [routerLink]="['/product', product.id]" class="related__name">{{ product.name }}</a>
+        <div class="related__rating">
+          <span class="related__stars">★★★★★</span>
+          <span class="related__rating-text">{{ product.rating }}</span>
+        </div>
+        <div class="related__price">
+          <span class="related__price-current">{{ formatPrice(product.price) }}</span>
+          <span class="related__price-original" *ngIf="product.originalPrice && product.originalPrice > product.price">
+            {{ formatPrice(product.originalPrice) }}
+          </span>
+        </div>
+        <button class="related__add-btn" (click)="onAddToCart($event, product)">
+          Thêm vào giỏ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="related__empty" *ngIf="!products.length">
+    <p>Không có sản phẩm liên quan.</p>
+  </div>
+</div>

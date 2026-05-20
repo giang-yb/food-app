@@ -1,0 +1,23 @@
+@if (isEnded) {
+  <div class="countdown-ended">
+    <span class="ended-icon">⏰</span>
+    <span class="ended-text">Đã kết thúc</span>
+  </div>
+} @else {
+  <div class="countdown-display" [class.final-hour]="isFinalHour">
+    <div class="time-unit">
+      <span class="digit">{{ hours }}</span>
+      <span class="label">Giờ</span>
+    </div>
+    <span class="separator">:</span>
+    <div class="time-unit">
+      <span class="digit">{{ minutes }}</span>
+      <span class="label">Phút</span>
+    </div>
+    <span class="separator">:</span>
+    <div class="time-unit">
+      <span class="digit">{{ secs }}</span>
+      <span class="label">Giây</span>
+    </div>
+  </div>
+}

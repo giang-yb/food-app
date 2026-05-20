@@ -1,0 +1,414 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1779260951936,
+  "projectRoot": "d:\\Mine\\food-web",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "@angular/core",
+        "version": "19.2.0",
+        "category": "frontend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": "npm test",
+    "lintCommand": null,
+    "devCommand": "npm run start",
+    "scripts": {
+      "ng": "ng",
+      "start": "ng serve",
+      "build": "ng build",
+      "watch": "ng build --watch --configuration development",
+      "test": "ng test"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": "ES modules",
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs",
+      "public",
+      "src"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 0,
+      "lastAccessed": 1779260951824,
+      "keyFiles": []
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 0,
+      "lastAccessed": 1779260951825,
+      "keyFiles": []
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 1,
+      "lastAccessed": 1779260951861,
+      "keyFiles": [
+        "favicon.ico"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 3,
+      "lastAccessed": 1779260951862,
+      "keyFiles": [
+        "index.html",
+        "main.ts",
+        "styles.scss"
+      ]
+    },
+    "src\\app": {
+      "path": "src\\app",
+      "purpose": "Application code",
+      "fileCount": 6,
+      "lastAccessed": 1779260951870,
+      "keyFiles": [
+        "app.component.html",
+        "app.component.scss",
+        "app.component.spec.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src\\app\\app.routes.ts",
+      "accessCount": 14,
+      "lastAccessed": 1779267830908,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\pages\\product-detail\\product-detail.component.ts",
+      "accessCount": 9,
+      "lastAccessed": 1779264829301,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\services\\cart.service.ts",
+      "accessCount": 5,
+      "lastAccessed": 1779263661201,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\home\\components\\product-card\\product-card.component.ts",
+      "accessCount": 5,
+      "lastAccessed": 1779263677721,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\shared\\components\\header\\header.component.ts",
+      "accessCount": 5,
+      "lastAccessed": 1779266835078,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-related\\product-related.component.ts",
+      "accessCount": 4,
+      "lastAccessed": 1779263105373,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\cart.routes.ts",
+      "accessCount": 4,
+      "lastAccessed": 1779263955434,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\shared\\components\\header\\header.component.html",
+      "accessCount": 4,
+      "lastAccessed": 1779266836560,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\pages\\product-detail\\product-detail.component.html",
+      "accessCount": 3,
+      "lastAccessed": 1779263219461,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\pages\\product-detail\\product-detail.component.scss",
+      "accessCount": 3,
+      "lastAccessed": 1779263247653,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\app.component.html",
+      "accessCount": 3,
+      "lastAccessed": 1779263598197,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\app.component.ts",
+      "accessCount": 3,
+      "lastAccessed": 1779263599734,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-related\\product-related.component.html",
+      "accessCount": 2,
+      "lastAccessed": 1779263119872,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-related\\product-related.component.scss",
+      "accessCount": 2,
+      "lastAccessed": 1779263121703,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\store\\cart.store.ts",
+      "accessCount": 2,
+      "lastAccessed": 1779263486431,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\components\\cart-badge\\cart-badge.component.ts",
+      "accessCount": 2,
+      "lastAccessed": 1779263522285,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\shared\\components\\toast\\toast.service.ts",
+      "accessCount": 2,
+      "lastAccessed": 1779263629982,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\shared\\components\\toast\\toast.component.html",
+      "accessCount": 2,
+      "lastAccessed": 1779263677763,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\home\\home.routes.ts",
+      "accessCount": 2,
+      "lastAccessed": 1779263924243,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\home\\models\\home.models.ts",
+      "accessCount": 2,
+      "lastAccessed": 1779264425862,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-info\\product-info.component.html",
+      "accessCount": 2,
+      "lastAccessed": 1779264745163,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-info\\product-info.component.ts",
+      "accessCount": 2,
+      "lastAccessed": 1779264745253,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\pages\\cart-page\\cart-page.component.html",
+      "accessCount": 2,
+      "lastAccessed": 1779267764465,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\components\\cart-summary\\cart-summary.component.html",
+      "accessCount": 2,
+      "lastAccessed": 1779267785912,
+      "type": "file"
+    },
+    {
+      "path": "src\\main.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779261345234,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\app.config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779261345317,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\home\\pages\\home-page\\home-page.component.html",
+      "accessCount": 1,
+      "lastAccessed": 1779261388224,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\models\\cart.models.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779262239286,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\components\\cart-badge\\cart-badge.component.html",
+      "accessCount": 1,
+      "lastAccessed": 1779262281256,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\components\\cart-badge\\cart-badge.component.scss",
+      "accessCount": 1,
+      "lastAccessed": 1779262282790,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\components\\cart-item\\cart-item.component.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779262335716,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\components\\cart-item\\cart-item.component.html",
+      "accessCount": 1,
+      "lastAccessed": 1779262337243,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\components\\cart-item\\cart-item.component.scss",
+      "accessCount": 1,
+      "lastAccessed": 1779262338709,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\components\\cart-summary\\cart-summary.component.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779262379324,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\components\\cart-summary\\cart-summary.component.scss",
+      "accessCount": 1,
+      "lastAccessed": 1779262382419,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\pages\\cart-page\\cart-page.component.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779262425011,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\cart\\pages\\cart-page\\cart-page.component.scss",
+      "accessCount": 1,
+      "lastAccessed": 1779262428142,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\models\\product.models.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779262787655,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\services\\product.service.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779262788986,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-gallery\\product-gallery.component.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779262986291,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-gallery\\product-gallery.component.html",
+      "accessCount": 1,
+      "lastAccessed": 1779262987767,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-gallery\\product-gallery.component.scss",
+      "accessCount": 1,
+      "lastAccessed": 1779262989349,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-info\\product-info.component.scss",
+      "accessCount": 1,
+      "lastAccessed": 1779263040935,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-reviews\\product-reviews.component.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779263042581,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-reviews\\product-reviews.component.html",
+      "accessCount": 1,
+      "lastAccessed": 1779263043976,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\components\\product-reviews\\product-reviews.component.scss",
+      "accessCount": 1,
+      "lastAccessed": 1779263045361,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\features\\product\\product.routes.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779263077191,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\shared\\components\\header\\header.component.scss",
+      "accessCount": 1,
+      "lastAccessed": 1779263552422,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\shared\\components\\toast\\toast.component.scss",
+      "accessCount": 1,
+      "lastAccessed": 1779263576539,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\shared\\services\\toast.service.ts",
+      "accessCount": 1,
+      "lastAccessed": 1779263645658,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

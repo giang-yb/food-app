@@ -1,0 +1,22 @@
+<div class="product-card">
+  <a [routerLink]="['/product', product.id]" class="product-link">
+    <div class="product-image">
+      <img [src]="product.imageUrl" [alt]="product.name" />
+      <span class="product-badge" *ngIf="hasDiscount">-{{ discountPercent }}%</span>
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">{{ product.name }}</h3>
+      <div class="product-rating">
+        <span class="product-stars">★★★★★</span>
+        <span class="product-rating-text">{{ product.rating }}</span>
+      </div>
+      <div class="product-price">
+        <span class="price-current">{{ formatPrice(product.price) }}</span>
+        <span class="price-original" *ngIf="hasDiscount">{{ formatPrice(product.originalPrice!) }}</span>
+      </div>
+    </div>
+  </a>
+  <button class="product-add-btn" (click)="onAddToCart($event)">
+    <span>Thêm vào giỏ</span>
+  </button>
+</div>

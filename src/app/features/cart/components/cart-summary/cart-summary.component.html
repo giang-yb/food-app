@@ -1,0 +1,32 @@
+<div class="cart-summary">
+  <h3 class="summary-title">Tổng cộng</h3>
+
+  <div class="summary-row">
+    <span class="row-label">Tạm tính ({{ summary.totalItems }} món)</span>
+    <span class="row-value">{{ formatPrice(summary.originalTotalPrice) }}</span>
+  </div>
+
+  @if (hasSavings) {
+    <div class="summary-row savings">
+      <span class="row-label">Tiết kiệm</span>
+      <span class="row-value">-{{ formatPrice(summary.savings) }}</span>
+    </div>
+  }
+
+  <div class="summary-divider"></div>
+
+  <div class="summary-row total">
+    <span class="row-label">Thành tiền</span>
+    <span class="row-value">{{ formatPrice(summary.totalPrice) }}</span>
+  </div>
+
+  <a routerLink="/checkout" class="checkout-btn">
+    Tiến hành đặt hàng
+  </a>
+
+  <div class="continue-shopping">
+    <a routerLink="/menu" class="continue-link">
+      ← Tiếp tục mua sắm
+    </a>
+  </div>
+</div>

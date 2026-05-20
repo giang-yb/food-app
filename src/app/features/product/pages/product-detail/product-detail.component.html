@@ -1,0 +1,48 @@
+<div class="product-detail" *ngIf="!isLoading && !error && productDetail">
+  <div class="product-detail__container">
+    <!-- Gallery Section -->
+    <section class="product-detail__gallery">
+      <app-product-gallery
+        [images]="productDetail!.product.images"
+        [productName]="productDetail!.product.name">
+      </app-product-gallery>
+    </section>
+
+    <!-- Info Section -->
+    <section class="product-detail__info">
+      <app-product-info
+        [product]="productDetail!.product"
+        (addToCart)="onAddToCart($event)">
+      </app-product-info>
+    </section>
+  </div>
+
+  <!-- Reviews Section -->
+  <section class="product-detail__reviews">
+    <app-product-reviews
+      [reviews]="productDetail!.reviews"
+      [productName]="productDetail!.product.name">
+    </app-product-reviews>
+  </section>
+
+  <!-- Related Products -->
+  <section class="product-detail__related">
+    <app-product-related
+      [products]="productDetail!.relatedProducts">
+    </app-product-related>
+  </section>
+</div>
+
+<!-- Loading State -->
+<div class="product-detail__loading" *ngIf="isLoading">
+  <div class="loading-spinner"></div>
+  <p>Đang tải sản phẩm...</p>
+</div>
+
+<!-- Error State -->
+<div class="product-detail__error" *ngIf="error">
+  <div class="error-icon">!</div>
+  <h3>Không tìm thấy sản phẩm</h3>
+  <p>{{ error }}</p>
+  <a routerLink="/" class="btn btn--primary">Quay lại trang chủ</a>
+</div>

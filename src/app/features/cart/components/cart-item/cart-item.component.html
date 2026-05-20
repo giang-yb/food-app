@@ -1,0 +1,45 @@
+<div class="cart-item">
+  <a [routerLink]="['/product', item.product.id]" class="item-image-link">
+    <img
+      [src]="item.product.imageUrl"
+      [alt]="item.product.name"
+      class="item-image" />
+  </a>
+
+  <div class="item-details">
+    <a [routerLink]="['/product', item.product.id]" class="item-name">
+      {{ item.product.name }}
+    </a>
+    <span class="item-category">{{ item.product.categoryName }}</span>
+
+    <div class="item-price">
+      <span class="current-price">{{ formatPrice(item.product.price) }}</span>
+      @if (hasDiscount) {
+        <span class="original-price">{{ formatPrice(item.product.originalPrice!) }}</span>
+      }
+    </div>
+  </div>
+
+  <div class="item-quantity">
+    <button
+      class="qty-btn decrement"
+      (click)="onDecrement()"
+      [disabled]="item.quantity <= 1">
+      −
+    </button>
+    <span class="qty-value">{{ item.quantity }}</span>
+    <button
+      class="qty-btn increment"
+      (click)="onIncrement()">
+      +
+    </button>
+  </div>
+
+  <div class="item-subtotal">
+    <span class="subtotal-value">{{ formatPrice(subtotal) }}</span>
+  </div>
+
+  <button class="remove-btn" (click)="onRemove()" aria-label="Remove item">
+    ✕
+  </button>
+</div>
