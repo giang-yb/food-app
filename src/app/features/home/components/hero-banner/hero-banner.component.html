@@ -1,12 +1,68 @@
-<section class="hero-banner" [class.has-image]="currentBanner.imageUrl">
+<section class="hero-banner">
+  <div class="hero-background">
+    <div class="hero-gradient"></div>
+    <div class="hero-pattern"></div>
+  </div>
+
   @if (currentBanner) {
-    <div class="hero-content">
-      <div class="hero-text">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badges">
+          <span class="hero-badge hero-badge--primary">
+            <span class="badge-icon">🔥</span>
+            <span>Hot Deal</span>
+          </span>
+          <span class="hero-badge hero-badge--secondary">
+            <span class="badge-icon">⚡</span>
+            <span>{{ currentBanner.title }}</span>
+          </span>
+        </div>
+
         <h1 class="hero-title">{{ currentBanner.title }}</h1>
         <p class="hero-subtitle">{{ currentBanner.subtitle }}</p>
-        <a [routerLink]="currentBanner.ctaLink" class="hero-cta">
-          {{ currentBanner.ctaText }}
-        </a>
+
+        <div class="hero-actions">
+          <a [routerLink]="currentBanner.ctaLink" class="hero-cta">
+            <span>{{ currentBanner.ctaText }}</span>
+            <span class="cta-icon">→</span>
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value">500+</span>
+            <span class="stat-label">Nhà hàng</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">50K+</span>
+            <span class="stat-label">Đơn hàng</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">4.9</span>
+            <span class="stat-label">Đánh giá</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <div class="hero-image-glow"></div>
+          <img
+            [src]="currentBanner.imageUrl"
+            [alt]="currentBanner.title"
+            class="hero-image"
+            loading="eager" />
+          <div class="hero-float-badge float-badge-1">
+            <span class="float-emoji">🍜</span>
+            <span class="float-text">Món ngon</span>
+          </div>
+          <div class="hero-float-badge float-badge-2">
+            <span class="float-emoji">🚀</span>
+            <span class="float-text">Giao nhanh</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -23,10 +79,44 @@
       </div>
     }
   } @else {
-    <div class="hero-placeholder">
-      <div class="placeholder-content">
-        <h1 class="placeholder-title">Tất cả đồ ăn bạn thèm</h1>
-        <p class="placeholder-subtitle">Giao tận cửa trong 30 phút</p>
+    <div class="hero-container hero-container--empty">
+      <div class="hero-content">
+        <div class="hero-badges">
+          <span class="hero-badge hero-badge--primary">
+            <span class="badge-icon">🍜</span>
+            <span>FoodApp</span>
+          </span>
+        </div>
+        <h1 class="hero-title">Tất cả đồ ăn bạn thèm</h1>
+        <p class="hero-subtitle">Giao tận cửa trong 30 phút</p>
+        <div class="hero-actions">
+          <a routerLink="/" class="hero-cta">
+            <span>Khám phá ngay</span>
+            <span class="cta-icon">→</span>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value">500+</span>
+            <span class="stat-label">Nhà hàng</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">50K+</span>
+            <span class="stat-label">Đơn hàng</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">4.9</span>
+            <span class="stat-label">Đánh giá</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <div class="hero-image-glow"></div>
+          <div class="hero-placeholder-image">🍜</div>
+        </div>
       </div>
     </div>
   }

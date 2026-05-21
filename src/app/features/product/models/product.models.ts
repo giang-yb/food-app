@@ -1,4 +1,4 @@
-// Product Data Models
+// Product Data Models - Angular standard (camelCase)
 
 export interface Product {
   id: string;
@@ -16,6 +16,7 @@ export interface Product {
   purchaseCount: number;
   isAvailable: boolean;
   tags: string[];
+  createdAt?: string;
 }
 
 export interface ProductReview {
@@ -25,7 +26,7 @@ export interface ProductReview {
   userAvatar?: string;
   rating: number;
   comment: string;
-  createdAt: Date;
+  createdAt: string;
   isVerified: boolean;
 }
 
@@ -33,4 +34,26 @@ export interface ProductDetail {
   product: Product;
   reviews: ProductReview[];
   relatedProducts: Product[];
+}
+
+// Convert Supabase snake_case to Angular camelCase
+export function toCamelCase(product: any): Product {
+  return {
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    price: product.price,
+    originalPrice: product.original_price,
+    imageUrl: product.image_url,
+    images: product.images || [],
+    categoryId: product.category_id,
+    categoryName: product.category_name,
+    categorySlug: product.category_slug,
+    rating: product.rating || 0,
+    reviewCount: product.review_count || 0,
+    purchaseCount: product.purchase_count || 0,
+    isAvailable: product.is_available ?? true,
+    tags: product.tags || [],
+    createdAt: product.created_at
+  };
 }

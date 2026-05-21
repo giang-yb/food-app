@@ -1,15 +1,22 @@
-import { Injectable, signal, computed, effect } from '@angular/core';
+import { Injectable, signal, computed, effect, inject } from '@angular/core';
 import { CartItem, CartSummary } from '../models/cart.models';
 import { Product } from '../../home/models/home.models';
-
-const CART_STORAGE_KEY = 'food_app_cart';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartStore {
+  private authService = inject(AuthService);
+
+  // Dynamic storage key based on user
+  private storageKey = computed(() => {
+    const user = this.authService.user();
+    return user ? `food_app_cart_${user.id}` : 'food_app_cart_guest';
+  });
+
   // State signals
-  private items = signal<CartItem[]>(this.loadFromStorage());
+  private items = signal<CartItem[]>([]);
 
   // Computed values
   totalItems = computed(() => {
@@ -41,27 +48,35 @@ export class CartStore {
   }));
 
   constructor() {
-    // Persist to localStorage on every change
+    // When storage key changes (user logs in/out), load cart for that specific user/guest
+    effect(() => {
+      const key = this.storageKey();
+      const loadedItems = this.loadFromStorage(key);
+      this.items.set(loadedItems);
+    }, { allowSignalWrites: true });
+
+    // Persist to localStorage whenever items change
     effect(() => {
       const currentItems = this.items();
-      this.saveToStorage(currentItems);
+      const key = this.storageKey();
+      this.saveToStorage(key, currentItems);
     });
   }
 
-  private loadFromStorage(): CartItem[] {
+  private loadFromStorage(key: string): CartItem[] {
     if (typeof window === 'undefined') return [];
     try {
-      const stored = localStorage.getItem(CART_STORAGE_KEY);
+      const stored = localStorage.getItem(key);
       return stored ? JSON.parse(stored) : [];
     } catch {
       return [];
     }
   }
 
-  private saveToStorage(items: CartItem[]): void {
+  private saveToStorage(key: string, items: CartItem[]): void {
     if (typeof window === 'undefined') return;
     try {
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+      localStorage.setItem(key, JSON.stringify(items));
     } catch (e) {
       console.error('[CartStore] Failed to save cart:', e);
     }

@@ -1,44 +1,49 @@
 .home-page {
   min-height: 100vh;
-  background-color: var(--color-background, #ffffff);
+  background-color: #ffffff;
+  padding-top: 80px;
+
+  @media (max-width: 768px) {
+    padding-top: 70px;
+  }
 }
 
 .loading-skeleton {
-  padding: var(--spacing-4, 32px);
+  padding: 2rem;
 
   .skeleton-hero {
     width: 100%;
-    height: 500px;
+    height: 520px;
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
-    border-radius: 12px;
-    margin-bottom: var(--spacing-6, 48px);
+    border-radius: 24px;
+    margin-bottom: 3rem;
   }
 
   .skeleton-categories {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: var(--spacing-4, 16px);
-    margin-bottom: var(--spacing-6, 48px);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
 
     @media (max-width: 768px) {
       grid-template-columns: repeat(3, 1fr);
     }
 
     .skeleton-card {
-      height: 120px;
+      height: 140px;
       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
       background-size: 200% 100%;
       animation: shimmer 1.5s infinite;
-      border-radius: 12px;
+      border-radius: 16px;
     }
   }
 
   .skeleton-products {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-4, 16px);
+    gap: 1.5rem;
 
     @media (max-width: 1024px) {
       grid-template-columns: repeat(3, 1fr);
@@ -49,11 +54,11 @@
     }
 
     .skeleton-product {
-      height: 280px;
+      height: 300px;
       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
       background-size: 200% 100%;
       animation: shimmer 1.5s infinite;
-      border-radius: 12px;
+      border-radius: 16px;
     }
   }
 }

@@ -10,29 +10,36 @@
       @if (hasDiscount) {
         <span class="discount-badge">-{{ discountPercent }}%</span>
       }
+
+      <button class="favorite-btn" (click)="onToggleFavorite($event)">
+        <span class="favorite-icon">{{ isFavorite() ? '❤️' : '🤍' }}</span>
+      </button>
     </div>
 
     <div class="product-info">
       <span class="product-category">{{ product.categoryName }}</span>
       <h3 class="product-name">{{ product.name }}</h3>
 
-      <div class="product-rating">
-        <span class="rating-stars">★★★★☆</span>
-        <span class="rating-value">{{ product.rating }}</span>
-        <span class="rating-count">({{ product.reviewCount }})</span>
+      <div class="product-meta">
+        <div class="product-rating">
+          <span class="rating-icon">⭐</span>
+          <span class="rating-value">{{ product.rating }}</span>
+          <span class="rating-count">({{ product.reviewCount }})</span>
+        </div>
+        <span class="product-time">🕐 15-20 phút</span>
       </div>
 
-      <div class="product-price">
-        <span class="current-price">{{ formatPrice(product.price) }}</span>
-        @if (hasDiscount) {
-          <span class="original-price">{{ formatPrice(product.originalPrice!) }}</span>
-        }
+      <div class="product-footer">
+        <div class="product-price">
+          <span class="current-price">{{ formatPrice(product.price) }}</span>
+          @if (hasDiscount) {
+            <span class="original-price">{{ formatPrice(product.originalPrice!) }}</span>
+          }
+        </div>
+        <button class="add-to-cart-btn" (click)="onAddToCart($event)">
+          <span class="cart-icon">+</span>
+        </button>
       </div>
     </div>
   </a>
-
-  <button class="add-to-cart-btn" (click)="onAddToCart($event)">
-    <span class="cart-icon">🛒</span>
-    <span class="cart-text">Thêm vào giỏ</span>
-  </button>
 </div>

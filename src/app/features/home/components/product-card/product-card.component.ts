@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Product } from '../../models/home.models';
@@ -15,6 +15,13 @@ export class ProductCardComponent {
   @Input() product!: Product;
 
   private cartService = inject(CartService);
+  isFavorite = signal(false);
+
+  onToggleFavorite(event: Event): void {
+    event.stopPropagation();
+    event.preventDefault();
+    this.isFavorite.set(!this.isFavorite());
+  }
 
   onAddToCart(event: Event): void {
     event.stopPropagation();

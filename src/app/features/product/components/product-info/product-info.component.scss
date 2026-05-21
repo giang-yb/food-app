@@ -1,4 +1,9 @@
 .product-info {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
   &__meta {
     display: flex;
     align-items: center;
@@ -7,8 +12,8 @@
   }
 
   &__category {
-    background: #FFF3E0;
-    color: #FF6B35;
+    background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+    color: white;
     padding: 0.375rem 0.75rem;
     border-radius: 20px;
     font-size: 0.875rem;
@@ -57,7 +62,7 @@
     margin-bottom: 1.5rem;
 
     &-current {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 700;
       color: #FF6B35;
     }
@@ -69,10 +74,10 @@
     }
 
     &-discount {
-      background: #FF6B35;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
       color: white;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
       font-size: 0.875rem;
       font-weight: 600;
     }
@@ -80,9 +85,13 @@
 
   &__description {
     color: #555;
-    line-height: 1.7;
+    line-height: 1.8;
     margin-bottom: 1.5rem;
     font-size: 1rem;
+    background: #FAFAFA;
+    padding: 1rem;
+    border-radius: 12px;
+    border-left: 4px solid #FF6B35;
 
     p {
       margin: 0;
@@ -108,7 +117,7 @@
     }
 
     &-value {
-      font-weight: 600;
+      font-weight: 700;
       color: #333;
     }
 
@@ -126,11 +135,12 @@
   }
 
   &__tag {
-    background: #f5f5f5;
-    color: #666;
+    background: #FFF3E0;
+    color: #FF6B35;
     padding: 0.375rem 0.75rem;
     border-radius: 16px;
     font-size: 0.8rem;
+    font-weight: 500;
   }
 
   &__actions {
@@ -139,27 +149,33 @@
 
   &__add-btn {
     width: 100%;
-    padding: 1rem 2rem;
-    background: #FF6B35;
+    padding: 1.125rem 2rem;
+    background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
     color: white;
     border: none;
     border-radius: 12px;
     font-size: 1.125rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 
     &:hover:not(:disabled) {
-      background: #e55a2b;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
     }
 
     &:disabled {
       background: #ccc;
+      box-shadow: none;
       cursor: not-allowed;
     }
   }

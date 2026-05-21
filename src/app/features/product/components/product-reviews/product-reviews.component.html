@@ -20,6 +20,46 @@
     </div>
   </div>
 
+  <!-- Write Review Form -->
+  <div class="reviews__form" *ngIf="canReview">
+    <h3 class="reviews__form-title">Viết đánh giá của bạn</h3>
+    <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+      <div class="form-group">
+        <label>Đánh giá của bạn</label>
+        <div class="star-rating">
+          <span
+            *ngFor="let star of [1, 2, 3, 4, 5]"
+            class="star"
+            [class.active]="star <= (hoveredStar || reviewForm.get('rating')?.value)"
+            (mouseenter)="hoveredStar = star"
+            (mouseleave)="hoveredStar = 0"
+            (click)="setRating(star)"
+          >
+            ★
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="comment">Nhận xét chi tiết</label>
+        <textarea
+          id="comment"
+          formControlName="comment"
+          rows="4"
+          placeholder="Hãy chia sẻ cảm nhận của bạn về món ăn này (ít nhất 10 ký tự)..."
+          [class.invalid]="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched"
+        ></textarea>
+        <span class="validation-error" *ngIf="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched">
+          Vui lòng nhập đánh giá (ít nhất 10 ký tự)
+        </span>
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Đang gửi...' : 'Gửi đánh giá' }}
+      </button>
+    </form>
+  </div>
+
   <!-- Reviews List -->
   <div class="reviews__list">
     <div class="reviews__item" *ngFor="let review of reviews">

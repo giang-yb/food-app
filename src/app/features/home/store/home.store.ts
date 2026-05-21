@@ -1,11 +1,16 @@
-import { Injectable, signal, computed, effect } from '@angular/core';
-import { Banner, Category, Product, FlashSale } from '../models/home.models';
+import { Injectable, signal, computed, effect, inject } from '@angular/core';
+import { Banner, Category, FlashSale } from '../models/home.models';
 import { HomeService } from '../services/home.service';
+import { ProductDbService } from '../../../core/services/product-db.service';
+import { Product } from '../../product/models/product.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeStore {
+  private homeService = inject(HomeService);
+  private productDbService = inject(ProductDbService);
+
   // State signals
   banners = signal<Banner[]>([]);
   activeBannerIndex = signal<number>(0);
@@ -31,7 +36,7 @@ export class HomeStore {
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   });
 
-  constructor(private homeService: HomeService) {
+  constructor() {
     // Cleanup on destroy
     effect(() => {
       return () => {
@@ -83,6 +88,16 @@ export class HomeStore {
     }
   }
 
+  async loadFeaturedProducts(): Promise<void> {
+    try {
+      const products = await this.productDbService.getProducts();
+      // Take first 8 products as featured
+      this.featuredProducts.set(products.slice(0, 8));
+    } catch (err) {
+      console.error('[HomeStore] loadFeaturedProducts error:', err);
+    }
+  }
+
   loadAll(): void {
     this.isLoading.set(true);
     this.error.set(null);
@@ -112,16 +127,8 @@ export class HomeStore {
       }
     });
 
-    // Load featured products
-    this.homeService.getFeaturedProducts().subscribe({
-      next: (products) => {
-        this.featuredProducts.set(products);
-      },
-      error: (err) => {
-        console.error('[HomePage] loadAll: products error', err);
-        this.error.set('Không thể tải sản phẩm');
-      }
-    });
+    // Load featured products from Supabase
+    this.loadFeaturedProducts();
 
     // Load flash sale
     this.homeService.getFlashSale().subscribe({

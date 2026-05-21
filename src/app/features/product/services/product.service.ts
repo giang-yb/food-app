@@ -48,11 +48,11 @@ export class ProductService {
         description: 'Bánh mì giòn tan với thịt nướng thơm phức, pate béo ngậy, rau dưa giòn chua ngọt. Món ăn sáng phổ biến của người Việt, kết hợp hoàn hảo giữa ẩm thực Pháp và Việt Nam. Thịt nướng được tẩm ướp qua đêm với các gia vị đặc trưng, nướng trên than hoa cho mùi thơm quyến rũ.',
         price: 45000,
         originalPrice: 55000,
-        imageUrl: '/assets/images/products/banh-mi-thit-nuong.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=600&fit=crop',
         images: [
-          '/assets/images/products/banh-mi-thit-nuong.jpg',
-          '/assets/images/products/banh-mi-thit-nuong-2.jpg',
-          '/assets/images/products/banh-mi-thit-nuong-3.jpg'
+          'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1558961363-fa8fdf82db94?w=600&h=600&fit=crop',
+          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=600&fit=crop'
         ],
         categoryId: '1',
         categoryName: 'Bánh mì',
@@ -68,9 +68,9 @@ export class ProductService {
         name: 'Cơm Gà Xối Mỡ',
         description: 'Cơm gà xối mỡ với gà ta chiên giòn vàng ươm, da giòn rục, thịt mềm ngọt. Ăn kèm với dưa gội chua ngọt, rau thơm và nước mắm pha chua ngọt đậm đà. Một món ăn no bụng, bổ dưỡng và rất được yêu thích.',
         price: 55000,
-        imageUrl: '/assets/images/products/com-ga-xoi-mo.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1565928028035-7e2c9e3e5c1e?w=600&h=600&fit=crop',
         images: [
-          '/assets/images/products/com-ga-xoi-mo.jpg'
+          'https://images.unsplash.com/photo-1565928028035-7e2c9e3e5c1e?w=600&h=600&fit=crop'
         ],
         categoryId: '2',
         categoryName: 'Cơm',
@@ -86,9 +86,9 @@ export class ProductService {
         name: 'Nước Ép Cam Tươi',
         description: 'Nước ép cam nguyên chất 100%, không đường, không chất bảo quản. Cam được chọn lọc kỹ lưỡng, vắt tươi mỗi ngày đảm bảo độ ngọt tự nhiên và vitamin C dồi dào. Thức uống giải khát hoàn hảo cho những ngày nóng bức.',
         price: 25000,
-        imageUrl: '/assets/images/products/nuoc-ep-cam.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=600&fit=crop',
         images: [
-          '/assets/images/products/nuoc-ep-cam.jpg'
+          'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=600&fit=crop'
         ],
         categoryId: '3',
         categoryName: 'Nước ép',
@@ -104,9 +104,9 @@ export class ProductService {
         name: 'Sinh Tố Bơ',
         description: 'Sinh tố bơ sánh mịn, béo ngậy với bơ chín ngon nhất. Thêm một chút sữa đặc và đá xay mịn lạnh, tạo nên thức uống bổ dưỡng giàu chất béo tốt. Hoàn hảo cho bữa sáng nhanh hoặc giải khát buổi chiều.',
         price: 35000,
-        imageUrl: '/assets/images/products/sinh-to-bo.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1628637340696-4cf84bb71bd5?w=600&h=600&fit=crop',
         images: [
-          '/assets/images/products/sinh-to-bo.jpg'
+          'https://images.unsplash.com/photo-1628637340696-4cf84bb71bd5?w=600&h=600&fit=crop'
         ],
         categoryId: '4',
         categoryName: 'Sinh tố',
@@ -123,9 +123,9 @@ export class ProductService {
         description: 'Kem vanilla hảo hạng làm từ vanilla Madagascar nguyên chất, kem tươi và đường mía. Công thức độc đáo tạo nên kết cấu mịn màng, không quá ngọt, với hương vanilla thơm lừng. Ăn một muỗng là đủ để lưu giữ mãi vị tuổi thơ.',
         price: 28000,
         originalPrice: 35000,
-        imageUrl: '/assets/images/products/kem-vanilla.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1563805042-7684c019a59f?w=600&h=600&fit=crop',
         images: [
-          '/assets/images/products/kem-vanilla.jpg'
+          'https://images.unsplash.com/photo-1563805042-7684c019a59f?w=600&h=600&fit=crop'
         ],
         categoryId: '5',
         categoryName: 'Kem',
@@ -141,9 +141,9 @@ export class ProductService {
         name: 'Bánh Mì Pate',
         description: 'Bánh mì pate với pate gan thơm ngon, bơ đậu phộng giòn tan. Pate được làm từ gan gà và thịt heo xay nhuyễn, nêm nếm vừa ăn. Một biến thể độc đáo của bánh mì Việt Nam.',
         price: 40000,
-        imageUrl: '/assets/images/products/banh-mi-pate.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db94?w=600&h=600&fit=crop',
         images: [
-          '/assets/images/products/banh-mi-pate.jpg'
+          'https://images.unsplash.com/photo-1558961363-fa8fdf82db94?w=600&h=600&fit=crop'
         ],
         categoryId: '1',
         categoryName: 'Bánh mì',
@@ -157,11 +157,11 @@ export class ProductService {
       {
         id: '7',
         name: 'Cơm Chiên Dương Cầu',
-        description: 'Cơm chiên Dương Cầu với trứng chiên vàng ruộm, thịt xá xíu thơm lừng, đậu phộng giòn. Cơm rang khô ráo, từng hạt cơm bóngóng ánh, giòn ngoài мягко trong. Một món ăn nổi tiếng của người Hoa.',
+        description: 'Cơm chiên Dương Cầu với trứng chiên vàng ruộm, thịt xá xíu thơm lừng, đậu phộng giòn. Cơm rang khô ráo, từng hạt cơm bóng ánh, giòn ngoài mềm trong. Một món ăn nổi tiếng của người Hoa.',
         price: 60000,
-        imageUrl: '/assets/images/products/com-chien-duong-cau.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&h=600&fit=crop',
         images: [
-          '/assets/images/products/com-chien-duong-cau.jpg'
+          'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&h=600&fit=crop'
         ],
         categoryId: '2',
         categoryName: 'Cơm',
@@ -175,11 +175,11 @@ export class ProductService {
       {
         id: '8',
         name: 'Sinh Tố Dâu',
-        description: 'Sinh tố dâu tươi với dâu花园 được chọn từ Đà Lạt, ngọt thanh và thơm mát. Kết hợp với sữa chua Hy Lạp và một chút mật ong, tạo nên thức uống vừa healthy vừa ngon miệng.',
+        description: 'Sinh tố dâu tươi với dâu được chọn từ Đà Lạt, ngọt thanh và thơm mát. Kết hợp với sữa chua Hy Lạp và một chút mật ong, tạo nên thức uống vừa healthy vừa ngon miệng.',
         price: 38000,
-        imageUrl: '/assets/images/products/sinh-to-dau.jpg',
+        imageUrl: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&h=600&fit=crop',
         images: [
-          '/assets/images/products/sinh-to-dau.jpg'
+          'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&h=600&fit=crop'
         ],
         categoryId: '4',
         categoryName: 'Sinh tố',
@@ -202,7 +202,7 @@ export class ProductService {
         userAvatar: 'https://i.pravatar.cc/100?img=1',
         rating: 5,
         comment: 'Món ăn rất ngon! Đóng gói cẩn thận, giao hàng nhanh. Sẽ ủng hộ lâu dài.',
-        createdAt: new Date('2024-01-15'),
+        createdAt: '2024-01-15',
         isVerified: true
       },
       {
@@ -212,7 +212,7 @@ export class ProductService {
         userAvatar: 'https://i.pravatar.cc/100?img=2',
         rating: 4,
         comment: 'Ngon, giá cả hợp lý. Một điểm trừ là giao hàng hơi lâu một chút.',
-        createdAt: new Date('2024-01-10'),
+        createdAt: '2024-01-10',
         isVerified: true
       },
       {
@@ -222,7 +222,7 @@ export class ProductService {
         userAvatar: 'https://i.pravatar.cc/100?img=3',
         rating: 5,
         comment: 'Đã mua nhiều lần, lần nào cũng rất hài lòng. Đề xuất mọi người nên thử!',
-        createdAt: new Date('2024-01-05'),
+        createdAt: '2024-01-05',
         isVerified: true
       },
       {
@@ -231,7 +231,7 @@ export class ProductService {
         userName: 'Phạm Thị D',
         rating: 4,
         comment: 'Khá ngon nhưng theo tôi thì hơi mặn một chút. Nói chung vẫn ổn.',
-        createdAt: new Date('2023-12-28'),
+        createdAt: '2023-12-28',
         isVerified: false
       }
     ];

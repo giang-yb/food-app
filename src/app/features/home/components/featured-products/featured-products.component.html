@@ -1,8 +1,17 @@
 <section class="featured-products">
   <div class="section-header">
-    <h2 class="section-title">Sản phẩm nổi bật</h2>
+    <div class="section-title-group">
+      <div class="section-badges">
+        <span class="section-badge">
+          <span class="badge-icon">✨</span>
+          <span>Nổi bật</span>
+        </span>
+      </div>
+      <h2 class="section-title">Món ăn được yêu thích nhất</h2>
+      <p class="section-subtitle">Những món ăn ngon được khách hàng lựa chọn nhiều nhất</p>
+    </div>
     <a routerLink="/menu" class="view-all-link">
-      Xem tất cả
+      <span>Xem tất cả</span>
       <span class="arrow">→</span>
     </a>
   </div>
@@ -10,7 +19,8 @@
   <div class="products-grid">
     @if (homeStore.featuredProducts().length === 0) {
       <div class="empty-state">
-        <p>Đang cập nhật sản phẩm...</p>
+        <div class="empty-icon">🍽️</div>
+        <p class="empty-text">Đang cập nhật sản phẩm...</p>
       </div>
     } @else {
       @for (product of homeStore.featuredProducts(); track trackByProductId($index)) {

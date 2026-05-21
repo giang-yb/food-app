@@ -6,7 +6,8 @@
       "Skill(spec-reviewer:*)",
       "Bash(npx tsc *)",
       "WebFetch(domain:minimax-algeng-chat-tts-us.oss-us-east-1.aliyuncs.com)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(npm install *)"
     ],
     "additionalDirectories": [
       "d:\\Mine\\food-web\\docs\\plans"

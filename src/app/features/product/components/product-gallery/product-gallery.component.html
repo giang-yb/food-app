@@ -6,21 +6,21 @@
     <button
       class="gallery__nav gallery__nav--prev"
       (click)="prevImage()"
-      *ngIf="images.length > 1">
+      *ngIf="displayImages.length > 1">
       ‹
     </button>
     <button
       class="gallery__nav gallery__nav--next"
       (click)="nextImage()"
-      *ngIf="images.length > 1">
+      *ngIf="displayImages.length > 1">
       ›
     </button>
   </div>
 
   <!-- Thumbnails -->
-  <div class="gallery__thumbnails" *ngIf="images.length > 1">
+  <div class="gallery__thumbnails" *ngIf="displayImages.length > 1">
     <button
-      *ngFor="let image of images; let i = index"
+      *ngFor="let image of displayImages; let i = index"
       class="gallery__thumb"
       [class.gallery__thumb--active]="i === selectedImageIndex"
       (click)="selectImage(i)">

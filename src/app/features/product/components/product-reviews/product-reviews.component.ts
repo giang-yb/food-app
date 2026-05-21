@@ -1,17 +1,34 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductReview } from '../../models/product.models';
 
 @Component({
   selector: 'app-product-reviews',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './product-reviews.component.html',
   styleUrl: './product-reviews.component.scss'
 })
 export class ProductReviewsComponent {
   @Input() reviews: ProductReview[] = [];
+  @Input() productId = '';
   @Input() productName = '';
+
+  reviewForm: FormGroup;
+  hoveredStar = 0;
+  isSubmitting = false;
+
+  // Giả lập trạng thái người dùng đã mua hàng. 
+  // Thực tế sẽ cần gọi API kiểm tra đơn hàng (như mô tả ở dưới)
+  canReview = true; 
+
+  constructor(private fb: FormBuilder) {
+    this.reviewForm = this.fb.group({
+      rating: [5, [Validators.required, Validators.min(1), Validators.max(5)]],
+      comment: ['', [Validators.required, Validators.minLength(10)]]
+    });
+  }
 
   get averageRating(): number {
     if (!this.reviews.length) return 0;
@@ -27,7 +44,7 @@ export class ProductReviewsComponent {
     });
   }
 
-  formatDate(date: Date): string {
+  formatDate(date: string): string {
     return new Intl.DateTimeFormat('vi-VN', {
       year: 'numeric',
       month: 'long',
@@ -37,5 +54,38 @@ export class ProductReviewsComponent {
 
   getStars(rating: number): string {
     return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+  }
+
+  setRating(rating: number): void {
+    this.reviewForm.patchValue({ rating });
+  }
+
+  submitReview(): void {
+    if (this.reviewForm.invalid) {
+      this.reviewForm.markAllAsTouched();
+      return;
+    }
+
+    this.isSubmitting = true;
+
+    // Giả lập gửi đánh giá
+    setTimeout(() => {
+      const newReview: ProductReview = {
+        id: 'new-' + Date.now(),
+        productId: this.productId,
+        userName: 'Bạn', // Cần lấy từ AuthService
+        userAvatar: 'https://i.pravatar.cc/100?img=11',
+        rating: this.reviewForm.value.rating,
+        comment: this.reviewForm.value.comment,
+        createdAt: new Date().toISOString(),
+        isVerified: true
+      };
+
+      // Thêm lên đầu mảng
+      this.reviews = [newReview, ...this.reviews];
+      this.reviewForm.reset({ rating: 5, comment: '' });
+      this.isSubmitting = false;
+      this.canReview = false; // Ẩn form sau khi đánh giá
+    }, 1000);
   }
 }

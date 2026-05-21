@@ -14,6 +14,8 @@ export interface Category {
   name: string;
   icon: string; // emoji
   slug: string;
+  color?: string;
+  productCount?: number;
 }
 
 export interface Product {

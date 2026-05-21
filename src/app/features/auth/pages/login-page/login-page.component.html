@@ -1,0 +1,59 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Đăng nhập</h1>
+      <p>Chào mừng bạn quay trở lại!</p>
+    </div>
+
+    <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Nhập email của bạn"
+          [class.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          [disabled]="isLoading" />
+        <div class="validation-error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">Email không được để trống</span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">Email không đúng định dạng</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <div class="password-input-wrapper">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            formControlName="password"
+            placeholder="Nhập mật khẩu"
+            [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            [disabled]="isLoading" />
+          <button type="button" class="btn-toggle-password" (click)="togglePasswordVisibility()">
+            <span *ngIf="!showPassword">👁️</span>
+            <span *ngIf="showPassword">🙈</span>
+          </button>
+        </div>
+        <div class="validation-error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">Mật khẩu không được để trống</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Mật khẩu phải có ít nhất 6 ký tự</span>
+        </div>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Đăng nhập</span>
+        <span *ngIf="isLoading">Đang xử lý...</span>
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      <p>Chưa có tài khoản? <a routerLink="/auth/register">Đăng ký ngay</a></p>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { categoryRoutes } from './features/category/category.routes';
 import { searchRoutes } from './features/search/search.routes';
 import { orderRoutes } from './features/order/order.routes';
 import { checkoutRoutes } from './features/checkout/checkout.routes';
+import { authRoutes } from './features/auth/auth.routes';
 
 export const routes: Routes = [
   ...homeRoutes,
@@ -14,5 +15,6 @@ export const routes: Routes = [
   ...categoryRoutes,
   ...searchRoutes,
   ...orderRoutes,
-  ...checkoutRoutes
+  ...checkoutRoutes,
+  ...authRoutes
 ];

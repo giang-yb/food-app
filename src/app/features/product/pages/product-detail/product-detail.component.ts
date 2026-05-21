@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { ProductService } from '../../services/product.service';
+import { ProductDbService } from '../../../../core/services/product-db.service';
 import { ProductDetail } from '../../models/product.models';
 import { ProductGalleryComponent } from '../../components/product-gallery/product-gallery.component';
 import { ProductInfoComponent } from '../../components/product-info/product-info.component';
@@ -24,7 +24,7 @@ import { ProductRelatedComponent } from '../../components/product-related/produc
 })
 export class ProductDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private productService = inject(ProductService);
+  private productDbService = inject(ProductDbService);
 
   productDetail: ProductDetail | undefined;
   isLoading = true;
@@ -46,21 +46,18 @@ export class ProductDetailComponent implements OnInit {
 
   private loadProduct(id: string): void {
     console.log('[ProductDetail] Loading product:', id);
-    this.productService.getProductDetail(id).subscribe({
-      next: (detail) => {
-        if (detail) {
-          this.productDetail = detail;
-          console.log('[ProductDetail] Product loaded:', detail.product.name);
-        } else {
-          this.error = 'Không tìm thấy sản phẩm';
-        }
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('[ProductDetail] Error loading product:', err);
-        this.error = 'Đã xảy ra lỗi khi tải sản phẩm';
-        this.isLoading = false;
+    this.productDbService.getProductDetail(id).then((detail) => {
+      if (detail) {
+        this.productDetail = detail;
+        console.log('[ProductDetail] Product loaded:', detail.product.name);
+      } else {
+        this.error = 'Không tìm thấy sản phẩm';
       }
+      this.isLoading = false;
+    }).catch((err: unknown) => {
+      console.error('[ProductDetail] Error loading product:', err);
+      this.error = 'Đã xảy ra lỗi khi tải sản phẩm';
+      this.isLoading = false;
     });
   }
 }

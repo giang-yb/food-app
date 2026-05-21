@@ -1,7 +1,7 @@
 .product-detail {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 5rem 1rem 2rem;
 
   &__container {
     display: grid;
@@ -12,6 +12,7 @@
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
       gap: 2rem;
+      padding-top: 1rem;
     }
   }
 

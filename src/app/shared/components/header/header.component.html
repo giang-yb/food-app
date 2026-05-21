@@ -1,26 +1,41 @@
-<header class="header">
+<header class="header" [class.header--scrolled]="isScrolled()">
   <div class="header__container">
     <!-- Logo -->
     <a routerLink="/" class="header__logo">
-      <span class="header__logo-icon">🍜</span>
+      <div class="header__logo-icon">🍜</div>
       <span class="header__logo-text">FoodApp</span>
     </a>
 
     <!-- Search -->
     <div class="header__search">
-      <input
-        type="text"
-        class="header__search-input"
-        placeholder="Tìm kiếm món ăn..."
-        [(ngModel)]="searchQuery"
-        (keyup.enter)="onSearch()" />
-      <button class="header__search-btn" (click)="onSearch()">🔍</button>
+      <div class="header__search-wrapper">
+        <input
+          type="text"
+          class="header__search-input"
+          placeholder="Bạn muốn ăn gì hôm nay?..."
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="onSearch()" />
+        <button class="header__search-btn" (click)="onSearch()">🔍</button>
+      </div>
     </div>
 
-    <!-- Cart Badge -->
-    <a routerLink="/cart" class="header__cart">
-      <span class="header__cart-icon">🛒</span>
-      <span class="header__cart-badge" *ngIf="showBadge">{{ itemCount }}</span>
-    </a>
+    <!-- Actions -->
+    <div class="header__actions">
+      <a routerLink="/cart" class="header__cart">
+        <span class="header__cart-icon">🛒</span>
+        <span class="header__cart-badge" *ngIf="showBadge">{{ itemCount }}</span>
+      </a>
+      <!-- User logged in -->
+    <div class="header__user" *ngIf="isAuthenticated">
+      <span class="header__user-name">{{ user?.fullName }}</span>
+      <button class="header__logout" (click)="onLogout()">Đăng xuất</button>
+    </div>
+
+    <!-- Guest -->
+    <div class="header__auth" *ngIf="!isAuthenticated">
+      <a routerLink="/auth/login" class="header__login">Đăng nhập</a>
+      <a routerLink="/auth/register" class="header__register">Đăng ký</a>
+    </div>
+    </div>
   </div>
 </header>

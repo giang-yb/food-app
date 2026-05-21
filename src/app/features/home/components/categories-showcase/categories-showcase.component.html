@@ -1,15 +1,26 @@
 <section class="categories-showcase">
   <div class="section-header">
-    <h2 class="section-title">Danh mục</h2>
+    <div class="section-badges">
+      <span class="section-badge">
+        <span class="badge-icon">📂</span>
+        <span>Danh mục</span>
+      </span>
+    </div>
+    <h2 class="section-title">Khám phá theo loại món</h2>
+    <p class="section-subtitle">Tìm kiếm đồ ăn theo sở thích của bạn</p>
   </div>
 
   <div class="categories-grid">
     @for (category of homeStore.categories(); track trackByCategoryId($index)) {
       <a
         [routerLink]="['/category', category.slug]"
-        class="category-card">
-        <span class="category-icon">{{ category.icon }}</span>
+        class="category-card"
+        [style.--accent-color]="category.color || '#FF6B35'">
+        <div class="category-icon-wrapper">
+          <span class="category-icon">{{ category.icon }}</span>
+        </div>
         <span class="category-name">{{ category.name }}</span>
+        <span class="category-count">{{ category.productCount || 0 }} món</span>
       </a>
     }
   </div>
