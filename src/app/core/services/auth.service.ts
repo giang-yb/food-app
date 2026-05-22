@@ -38,18 +38,46 @@ export class AuthService {
         phone: data.phone,
         address: data.address,
         avatarUrl: data.avatar_url,
+        paymentQrUrl: data.payment_qr_url,
         createdAt: data.created_at,
       });
     } else {
       const { data: { user: authUser } } = await supabase.auth.getUser();
       if (authUser && authUser.email === email) {
-        this.userSignal.set({
-          id: authUser.id,
-          email: authUser.email!,
-          fullName: authUser.user_metadata?.['full_name'] || authUser.email?.split('@')[0] || 'User',
-          role: 'customer',
-          createdAt: authUser.created_at || new Date().toISOString(),
-        });
+        // Tự động tạo bản ghi trong bảng public.users nếu chưa tồn tại
+        const { data: newProfile, error: insertError } = await supabase
+          .from('users')
+          .insert({
+            email: email,
+            full_name: authUser.user_metadata?.['full_name'] || email.split('@')[0] || 'User',
+            role: 'customer'
+          })
+          .select()
+          .single();
+
+        if (newProfile && !insertError) {
+          this.userSignal.set({
+            id: newProfile.id, // bigint ID thực tế từ database
+            email: newProfile.email,
+            fullName: newProfile.full_name || email.split('@')[0] || 'User',
+            role: newProfile.role || 'customer',
+            phone: newProfile.phone,
+            address: newProfile.address,
+            avatarUrl: newProfile.avatar_url,
+            paymentQrUrl: newProfile.payment_qr_url,
+            createdAt: newProfile.created_at,
+          });
+        } else {
+          console.error('Lỗi khi tự động tạo profile public.users:', insertError);
+          // Dự phòng dùng tạm UUID (mặc dù có thể gây lỗi khóa ngoại ở một số bảng)
+          this.userSignal.set({
+            id: authUser.id,
+            email: authUser.email!,
+            fullName: authUser.user_metadata?.['full_name'] || authUser.email?.split('@')[0] || 'User',
+            role: 'customer',
+            createdAt: authUser.created_at || new Date().toISOString(),
+          });
+        }
       }
     }
   }
@@ -133,6 +161,7 @@ export class AuthService {
         phone: updates.phone,
         address: updates.address,
         avatar_url: updates.avatarUrl,
+        payment_qr_url: updates.paymentQrUrl,
         updated_at: new Date().toISOString(),
       })
       .eq('email', currentUser.email); // ✅ update bằng email thay vì id

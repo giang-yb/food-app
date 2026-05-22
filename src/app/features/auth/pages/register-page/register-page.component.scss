@@ -134,3 +134,18 @@
     }
   }
 }
+
+.input-error-text {
+  color: #D32F2F;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: block;
+  text-align: left;
+}
+
+.input-field-error {
+  border-color: #D32F2F !important;
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1) !important;
+  }
+}

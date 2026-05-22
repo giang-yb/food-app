@@ -6,7 +6,7 @@
         type="text"
         class="search-page__input"
         placeholder="Nhập tên món ăn..."
-        [(ngModel)]="query"
+        [formControl]="searchControl"
         (keyup.enter)="onSearch()" />
       <button class="search-page__btn" (click)="onSearch()">🔍</button>
     </div>

@@ -47,11 +47,7 @@
           formControlName="comment"
           rows="4"
           placeholder="Hãy chia sẻ cảm nhận của bạn về món ăn này (ít nhất 10 ký tự)..."
-          [class.invalid]="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched"
         ></textarea>
-        <span class="validation-error" *ngIf="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched">
-          Vui lòng nhập đánh giá (ít nhất 10 ký tự)
-        </span>
       </div>
 
       <button type="submit" class="btn-submit" [disabled]="isSubmitting">

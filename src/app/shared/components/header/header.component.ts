@@ -1,14 +1,14 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { CartStore } from '../../../features/cart/store/cart.store';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -18,7 +18,7 @@ export class HeaderComponent {
   private router = inject(Router);
 
   isScrolled = signal(false);
-  searchQuery = '';
+  searchControl = new FormControl('');
 
   @HostListener('window:scroll')
   onScroll(): void {
@@ -42,9 +42,10 @@ export class HeaderComponent {
   }
 
   onSearch(): void {
-    if (this.searchQuery.trim()) {
-      this.router.navigate(['/search'], { queryParams: { q: this.searchQuery.trim() } });
-      this.searchQuery = '';
+    const value = this.searchControl.value?.trim();
+    if (value) {
+      this.router.navigate(['/search'], { queryParams: { q: value } });
+      this.searchControl.setValue('');
     }
   }
 

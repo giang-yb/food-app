@@ -22,6 +22,7 @@
   <section class="product-detail__reviews">
     <app-product-reviews
       [reviews]="productDetail!.reviews"
+      [productId]="productDetail!.product.id"
       [productName]="productDetail!.product.name">
     </app-product-reviews>
   </section>

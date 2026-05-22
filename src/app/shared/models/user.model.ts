@@ -6,6 +6,7 @@ export interface User {
   phone?: string;
   address?: string;
   avatarUrl?: string;
+  paymentQrUrl?: string;
   createdAt: string;
 }
 

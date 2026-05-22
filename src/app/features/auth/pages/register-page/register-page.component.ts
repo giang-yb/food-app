@@ -1,47 +1,53 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss'
 })
 export class RegisterPageComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private fb = inject(FormBuilder);
 
-  fullName = '';
-  email = '';
-  password = '';
-  confirmPassword = '';
+  registerForm = this.fb.group({
+    fullName: ['', [Validators.required, Validators.minLength(2)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', [Validators.required]]
+  });
+
   isLoading = false;
   errorMessage = '';
 
+  get f() {
+    return this.registerForm.controls;
+  }
+
   async onSubmit(): Promise<void> {
-    if (!this.fullName || !this.email || !this.password || !this.confirmPassword) {
-      this.errorMessage = 'Vui lòng nhập đầy đủ thông tin';
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      this.errorMessage = 'Vui lòng nhập đầy đủ và đúng định dạng thông tin';
       return;
     }
 
-    if (this.password !== this.confirmPassword) {
+    const { fullName, email, password, confirmPassword } = this.registerForm.value;
+
+    if (password !== confirmPassword) {
       this.errorMessage = 'Mật khẩu xác nhận không khớp';
-      return;
-    }
-
-    if (this.password.length < 6) {
-      this.errorMessage = 'Mật khẩu phải có ít nhất 6 ký tự';
       return;
     }
 
     this.isLoading = true;
     this.errorMessage = '';
 
-    const result = await this.authService.signUp(this.email, this.password, this.fullName);
+    const result = await this.authService.signUp(email!, password!, fullName!);
 
     this.isLoading = false;
 

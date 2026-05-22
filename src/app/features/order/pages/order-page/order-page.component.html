@@ -2,7 +2,7 @@
   <h1 class="order-page__title">Đặt hàng</h1>
 
   <div class="order-page__content" *ngIf="!isEmpty">
-    <div class="order-page__form">
+    <div class="order-page__form" [formGroup]="checkoutForm">
       <h2 class="order-page__section-title">Thông tin giao hàng</h2>
 
       <div class="form-group">
@@ -11,7 +11,14 @@
           type="text"
           class="form-input"
           placeholder="Nhập họ tên"
-          [(ngModel)]="customerName" />
+          formControlName="customerName"
+          [class.input-field-error]="f.customerName.touched && f.customerName.invalid" />
+        <span class="input-error-text" *ngIf="f.customerName.touched && f.customerName.errors?.['required']">
+          Họ và tên không được để trống.
+        </span>
+        <span class="input-error-text" *ngIf="f.customerName.touched && f.customerName.errors?.['minlength']">
+          Họ và tên phải có ít nhất 2 ký tự.
+        </span>
       </div>
 
       <div class="form-group">
@@ -20,7 +27,14 @@
           type="tel"
           class="form-input"
           placeholder="Nhập số điện thoại"
-          [(ngModel)]="customerPhone" />
+          formControlName="customerPhone"
+          [class.input-field-error]="f.customerPhone.touched && f.customerPhone.invalid" />
+        <span class="input-error-text" *ngIf="f.customerPhone.touched && f.customerPhone.errors?.['required']">
+          Số điện thoại không được để trống.
+        </span>
+        <span class="input-error-text" *ngIf="f.customerPhone.touched && f.customerPhone.errors?.['pattern']">
+          Số điện thoại phải gồm 10 hoặc 11 chữ số.
+        </span>
       </div>
 
       <div class="form-group">
@@ -28,8 +42,15 @@
         <textarea
           class="form-input form-textarea"
           placeholder="Nhập địa chỉ chi tiết"
-          [(ngModel)]="deliveryAddress"
+          formControlName="deliveryAddress"
+          [class.input-field-error]="f.deliveryAddress.touched && f.deliveryAddress.invalid"
           rows="3"></textarea>
+        <span class="input-error-text" *ngIf="f.deliveryAddress.touched && f.deliveryAddress.errors?.['required']">
+          Địa chỉ giao hàng không được để trống.
+        </span>
+        <span class="input-error-text" *ngIf="f.deliveryAddress.touched && f.deliveryAddress.errors?.['minlength']">
+          Vui lòng nhập địa chỉ giao hàng chi tiết hơn (ít nhất 10 ký tự).
+        </span>
       </div>
     </div>
 
@@ -62,8 +83,9 @@
         </div>
       </div>
 
-      <button class="order-page__submit" (click)="onPlaceOrder()">
-        Đặt hàng ngay
+      <button class="order-page__submit" (click)="onPlaceOrder()" [disabled]="isPlacingOrder">
+        <span *ngIf="!isPlacingOrder">Đặt hàng ngay</span>
+        <span *ngIf="isPlacingOrder">Đang xử lý đơn hàng...</span>
       </button>
     </div>
   </div>
@@ -71,5 +93,43 @@
   <div class="order-page__empty" *ngIf="isEmpty">
     <p>Giỏ hàng trống</p>
     <a routerLink="/" class="btn-back">Quay lại trang chủ</a>
+  </div>
+</div>
+
+<!-- QR Payment Modal -->
+<div class="qr-modal" *ngIf="isShowingQR">
+  <div class="qr-modal__backdrop" (click)="cancelPayment()"></div>
+  <div class="qr-modal__content">
+    <button class="qr-modal__close" (click)="cancelPayment()">&times;</button>
+    <h2>Thanh toán qua chuyển khoản</h2>
+    <p class="qr-modal__desc">Vui lòng mở ứng dụng ngân hàng quét mã QR dưới đây. Hệ thống sẽ tự động nhận diện giao dịch và chuyển hướng khi nhận được tiền.</p>
+    
+    <div class="qr-modal__timer">
+      Thời gian còn lại: <strong>{{ formattedCountdown }}</strong>
+    </div>
+
+    <div class="qr-modal__image-wrapper">
+      <div class="qr-loading-placeholder" *ngIf="!dynamicQrUrl">
+        <div class="spinner-small"></div>
+        <p>Đang khởi tạo mã QR...</p>
+      </div>
+      <img [src]="dynamicQrUrl" alt="Mã QR Thanh Toán" class="qr-modal__image" *ngIf="dynamicQrUrl" />
+    </div>
+
+    <div class="qr-modal__memo" *ngIf="createdOrderCode">
+      Nội dung chuyển khoản (bắt buộc): <strong>{{ createdOrderCode }}</strong>
+    </div>
+
+    <div class="qr-modal__amount">
+      Số tiền cần chuyển: <strong>{{ formatPrice(cartSummary.totalPrice) }}</strong>
+    </div>
+
+    <div class="qr-modal__actions">
+      <button class="btn btn--outline" (click)="cancelPayment()">Hủy</button>
+      <button class="btn btn--primary" (click)="confirmPayment()" [disabled]="isPlacingOrder">
+        <span *ngIf="!isPlacingOrder">Tôi đã chuyển khoản</span>
+        <span *ngIf="isPlacingOrder">Đang kiểm tra...</span>
+      </button>
+    </div>
   </div>
 </div>

@@ -1,0 +1,97 @@
+<div class="order-detail-page">
+  <!-- Loading State -->
+  <div class="order-loading-card" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Đang tải thông tin đơn hàng...</p>
+  </div>
+
+  <ng-container *ngIf="!isLoading">
+    <div class="order-detail-card" *ngIf="order">
+      <!-- Success Header -->
+      <div class="success-header">
+        <div class="success-icon">✓</div>
+        <h1>Đặt hàng thành công!</h1>
+        <p>Cảm ơn bạn đã đặt món. FoodApp sẽ nhanh chóng giao hàng tới bạn.</p>
+      </div>
+
+      <!-- Order Metadata -->
+      <div class="order-meta">
+        <div class="meta-item">
+          <span class="label">Mã đơn hàng</span>
+          <span class="value highlight">ORD-{{ order.id }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">Trạng thái</span>
+          <span class="value status-badge" [attr.data-status]="order.status">
+            {{ getStatusLabel(order.status) }}
+          </span>
+        </div>
+        <div class="meta-item">
+          <span class="label">Thời gian đặt</span>
+          <span class="value">{{ formatDate(order.createdAt) }}</span>
+        </div>
+      </div>
+
+      <!-- Customer Information -->
+      <div class="section-block">
+        <h3 class="section-title">Thông tin giao hàng</h3>
+        <div class="info-grid">
+          <div class="info-row">
+            <span class="info-label">Người nhận:</span>
+            <span class="info-value">{{ order.customerName }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Số điện thoại:</span>
+            <span class="info-value">{{ order.customerPhone }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Địa chỉ giao:</span>
+            <span class="info-value">{{ order.deliveryAddress }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Items -->
+      <div class="section-block">
+        <h3 class="section-title">Chi tiết món ăn</h3>
+        <div class="items-list">
+          <div class="item-row" *ngFor="let item of order.items">
+            <div class="item-main">
+              <span class="item-name">{{ item.product.name }}</span>
+              <span class="item-qty">x{{ item.quantity }}</span>
+            </div>
+            <span class="item-price">{{ formatPrice(item.product.price * item.quantity) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Payment Summary -->
+      <div class="total-summary">
+        <div class="summary-row">
+          <span>Tạm tính</span>
+          <span>{{ formatPrice(order.totalPrice) }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Phí vận chuyển</span>
+          <span class="shipping-free">Miễn phí</span>
+        </div>
+        <div class="summary-row final-row">
+          <span>Tổng thanh toán</span>
+          <span class="final-price">{{ formatPrice(order.totalPrice) }}</span>
+        </div>
+      </div>
+
+      <!-- Footer Actions -->
+      <div class="actions">
+        <a routerLink="/" class="btn btn--primary">Quay lại trang chủ</a>
+      </div>
+    </div>
+
+    <!-- Fallback if order not found -->
+    <div class="order-not-found-card" *ngIf="!order">
+      <h2>Không tìm thấy đơn hàng</h2>
+      <p>Đơn hàng bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
+      <a routerLink="/" class="btn btn--primary">Quay lại trang chủ</a>
+    </div>
+  </ng-container>
+</div>

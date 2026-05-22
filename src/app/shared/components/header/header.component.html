@@ -13,7 +13,7 @@
           type="text"
           class="header__search-input"
           placeholder="Bạn muốn ăn gì hôm nay?..."
-          [(ngModel)]="searchQuery"
+          [formControl]="searchControl"
           (keyup.enter)="onSearch()" />
         <button class="header__search-btn" (click)="onSearch()">🔍</button>
       </div>

@@ -45,31 +45,43 @@
   &__submit {
     width: 100%;
     padding: 1rem;
-    background: #FF6B35;
+    background: #ff5722;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 1.5rem;
+    transition: background 0.3s;
 
     &:hover {
-      background: #e55a2b;
+      background: #e64a19;
     }
   }
 
   &__empty {
     text-align: center;
     padding: 3rem;
-    color: #666;
-
+    
+    p {
+      color: #666;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    
     .btn-back {
       display: inline-block;
-      margin-top: 1rem;
-      color: #FF6B35;
+      padding: 0.8rem 1.5rem;
+      background: #f5f5f5;
+      color: #333;
       text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background 0.3s;
+      
+      &:hover {
+        background: #e0e0e0;
+      }
     }
   }
 }
@@ -176,5 +188,225 @@
     .final-price {
       color: #FF6B35;
     }
+  }
+}
+
+// QR Modal Styles
+.qr-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  &__content {
+    position: relative;
+    background: #fff;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1001;
+    animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    h2 {
+      margin: 0 0 0.5rem;
+      color: #333;
+      font-size: 1.5rem;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+    
+    &:hover {
+      color: #333;
+    }
+  }
+
+  &__desc {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  &__timer {
+    display: inline-block;
+    background: #fff3e0;
+    color: #e65100;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+
+    strong {
+      font-size: 1.1rem;
+      font-family: monospace;
+      margin-left: 0.25rem;
+    }
+  }
+
+  &__image-wrapper {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+
+  &__image {
+    max-width: 250px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  &__memo {
+    background: #eef7f2;
+    color: #1b5e20;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    border: 1px dashed #81c784;
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+
+    strong {
+      font-size: 1.15rem;
+      color: #2e7d32;
+      letter-spacing: 0.5px;
+      background: #c8e6c9;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.25rem;
+    }
+  }
+
+  .qr-loading-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    width: 250px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin: 0 auto;
+
+    p {
+      margin-top: 1rem;
+      color: #666;
+      font-size: 0.9rem;
+    }
+  }
+
+  .spinner-small {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(255, 87, 34, 0.2);
+    border-radius: 50%;
+    border-top-color: #ff5722;
+    animation: spin 0.8s linear infinite;
+  }
+
+  &__amount {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    
+    strong {
+      color: #ff5722;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    
+    .btn {
+      flex: 1;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+      
+      &--primary {
+        background: #ff5722;
+        color: white;
+        border: none;
+        
+        &:hover {
+          background: #e64a19;
+        }
+      }
+      
+      &--outline {
+        background: transparent;
+        color: #666;
+        border: 1px solid #ccc;
+        
+        &:hover {
+          background: #f5f5f5;
+          color: #333;
+        }
+      }
+    }
+  }
+}
+
+@keyframes modalPop {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.input-error-text {
+  color: #D32F2F;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: block;
+  text-align: left;
+}
+
+.input-field-error {
+  border-color: #D32F2F !important;
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1) !important;
   }
 }
